@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,3 +22,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//rutas de vacantes
+Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');

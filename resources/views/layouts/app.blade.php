@@ -38,7 +38,7 @@
                                <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('register') }}">{{ __('Register') }}</a>                                
                             @endif
                         @else
-                              <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
+                            <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
                              <div class="no-underline hover:underline text-gray-300 text-sm p-3" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -55,6 +55,12 @@
                </div>
             </div>
         </nav>
+
+        <div class="bg-gray-700">
+            <nav class="container mx-auto flex space-x-1">
+                @yield('navegacion')
+            </nav>
+        </div>
 
         <main class="py-4">
             @yield('content')
