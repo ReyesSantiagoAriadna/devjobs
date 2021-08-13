@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vacante;
+use App\Models\Categoria;
+use App\Models\Experiencia;
 use Illuminate\Http\Request;
+use Database\Seeders\CategoriaSeed;
 
 class VacanteController extends Controller
 {
@@ -29,7 +32,10 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        //
+        //consultas
+        $categorias = Categoria::all();
+        $experienias = Experiencia::all();
+        return view('vacantes.create', compact('categorias', 'experienias'));
     }
 
     /**
