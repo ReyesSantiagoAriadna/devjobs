@@ -34,8 +34,8 @@ class VacanteController extends Controller
     {
         //consultas
         $categorias = Categoria::all();
-        $experienias = Experiencia::all();
-        return view('vacantes.create', compact('categorias', 'experienias'));
+        $experiencias = Experiencia::all();
+        return view('vacantes.create', compact('categorias', 'experiencias'));
     }
 
     /**

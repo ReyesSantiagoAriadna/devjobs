@@ -36,7 +36,7 @@
                           focus:bg-white focus:border-gray-500 p-3 bg-gray-100"
               >
              <option disabled selected>-- Seleciona --</option>
-             @foreach ($expericias as $experiencia)
+             @foreach ($experiencias as $experiencia)
                 <option value="{{$experiencia->id}}">{{$experiencia->nombre}}</option>
              @endforeach
              </select>
