@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
 @section('navegacion')
     @include('ui.adminav') 
 @endsection
 
 @section('content')
-    <h1 class="text-2xl text-center mt-10">Nueva vacantes</h1>
+    <h1 class="text-2xl text-center mt-10">Nueva vacante</h1>
 
     <form class="max-w-lg mx-auto my-10">
         <div class="mb-5">
@@ -15,7 +20,7 @@
         </div>
 
         <div class="mb-5">
-            <label for="categoria" class="block text-gray-700 text-sm mb-2">Titulo vacante:</label>
+            <label for="categoria" class="block text-gray-700 text-sm mb-2">Categoria:</label>
              <select name="categoria" id="categoria" 
                      class="block appearance-none w-full border border-gray-200 
                           text-gray-700 rounded leading-tight focus:outline-none 
@@ -29,7 +34,7 @@
         </div>
 
         <div class="mb-5">
-            <label for="experiencia" class="block text-gray-700 text-sm mb-2">Titulo vacante:</label>
+            <label for="experiencia" class="block text-gray-700 text-sm mb-2">Experiencia:</label>
              <select name="experiencia" id="experiencia" 
                      class="block appearance-none w-full border border-gray-200 
                           text-gray-700 rounded leading-tight focus:outline-none 
@@ -41,10 +46,92 @@
              @endforeach
              </select>
         </div>
+
+        <div class="mb-5">
+            <label for="ubicacion" class="block text-gray-700 text-sm mb-2">Ubicación:</label>
+             <select name="ubicacion" id="ubicacion" 
+                     class="block appearance-none w-full border border-gray-200 
+                          text-gray-700 rounded leading-tight focus:outline-none 
+                          focus:bg-white focus:border-gray-500 p-3 bg-gray-100"
+              >
+             <option disabled selected>-- Seleciona --</option>
+             @foreach ($ubicaciones as $ubicacion)
+                <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+             @endforeach
+             </select>
+        </div>
+
+        <div class="mb-5">
+            <label for="salario" class="block text-gray-700 text-sm mb-2">Salario:</label>
+             <select name="salario" id="salario" 
+                     class="block appearance-none w-full border border-gray-200 
+                          text-gray-700 rounded leading-tight focus:outline-none 
+                          focus:bg-white focus:border-gray-500 p-3 bg-gray-100"
+              >
+             <option disabled selected>-- Seleciona --</option>
+             @foreach ($salarios as $salario)
+                <option value="{{$salario->id}}">{{$salario->nombre}}</option>
+             @endforeach
+             </select>
+        </div>
+
+
+        <div class="mb-5">
+            <label for="descripcion" class="block text-gray-700 text-sm mb-2">Descripción del Puesto:</label>
+             
+            <div class="editable p-3 bg-gray-100 rounded form-input w-full text-gray-700"></div>
+
+
+            <input type="hidden" name="descripcion" id="descripcion">
+        </div>
+
+        <div class="mb-5">
+            <label for="descripcion" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
+             
+            <div id="dropzoneDevjob" class="dropzone bg-gray-100"></div>
+ 
+        </div>
+
          
 
         <button type="submit" class="bg-blue-500 w-full hover:bg-blue-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline uppercase font-bold">
             Pubicar vacante
         </button>
     </form>
+@endsection
+
+@section('scripts')
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js" integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     
+     <script>
+         Dropzone.autoDiscover = false;
+
+         document.addEventListener('DOMContentLoaded', () => {
+             //medium editor
+             const editor = new MediumEditor('.editable', {
+                toolbar: {
+                    buttons: ['bold','italic','underline','quote', 'anchor', 'justifyLeft',
+                            'justifyCenter','justifyRight', 'justifyFull', 'orderedList', 
+                            'unorderedList', 'h2','h3'],
+                    static: true,
+                    sticky: true
+                },
+                placeholder:{
+                    text: 'Información de la vacante'
+                }
+             });
+
+             editor.subscribe('editableInput', function(eventObj, editable){
+                 const contenido = editor.getContent();
+                 document.querySelector('#descripcion').value = contenido;
+             })
+
+             //dropzone
+             const dropzoneDevjob= new Dropzone('#dropzoneDevjob', {
+                 url: "/vacantes/imagen"
+             });
+             
+         })
+     </script>
 @endsection

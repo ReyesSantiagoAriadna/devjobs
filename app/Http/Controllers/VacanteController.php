@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Vacante;
 use App\Models\Categoria;
 use App\Models\Experiencia;
+use App\Models\Salario;
+use App\Models\Ubicacion;
 use Illuminate\Http\Request;
 use Database\Seeders\CategoriaSeed;
+use Database\Seeders\UbicacionSeeder;
 
 class VacanteController extends Controller
 {
@@ -35,7 +38,10 @@ class VacanteController extends Controller
         //consultas
         $categorias = Categoria::all();
         $experiencias = Experiencia::all();
-        return view('vacantes.create', compact('categorias', 'experiencias'));
+        $ubicaciones = Ubicacion::all();
+        $salarios = Salario::all();
+
+        return view('vacantes.create', compact('categorias', 'experiencias','ubicaciones','salarios'));
     }
 
     /**

@@ -31868,6 +31868,183 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.medium-toolbar-arrow-under:after {
+  border-color: rgba(59, 130, 246, var(--tw-bg-opacity)) transparent transparent transparent;
+  top: 40px;
+}
+
+.medium-toolbar-arrow-over:before {
+  border-color: transparent transparent rgba(59, 130, 246, var(--tw-bg-opacity)) transparent;
+}
+
+.medium-editor-toolbar {
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  border: none;
+  border-radius: 50px;
+}
+
+.medium-editor-toolbar li button {
+  background-color: transparent;
+  border: none;
+  box-sizing: border-box;
+  color: #ccc;
+  height: 40px;
+  min-width: 40px;
+  padding: 5px 12px;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.medium-editor-toolbar li button:hover {
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  color: rgba(29, 78, 216, var(--tw-bg-opacity));
+}
+
+.medium-editor-toolbar li .medium-editor-button-first {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  padding-left: 24px;
+}
+
+.medium-editor-toolbar li .medium-editor-button-last {
+  border-bottom-right-radius: 50px;
+  border-right: none;
+  border-top-right-radius: 50px;
+  padding-right: 24px;
+}
+
+.medium-editor-toolbar li .medium-editor-button-active {
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  color: rgba(29, 78, 216, var(--tw-bg-opacity));
+}
+
+.medium-editor-toolbar-form {
+  background: rgba(59, 130, 246, var(--tw-bg-opacity));
+  border-radius: 50px;
+  color: #ccc;
+  overflow: hidden;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input {
+  background: rgba(59, 130, 246, var(--tw-bg-opacity));
+  box-sizing: border-box;
+  color: #ccc;
+  height: 40px;
+  padding-left: 16px;
+  width: 220px;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input::-webkit-input-placeholder {
+  color: #f8f5f3;
+  color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #f8f5f3;
+  color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #f8f5f3;
+  color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:-ms-input-placeholder {
+  color: #f8f5f3;
+  color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form a {
+  color: #ccc;
+  transform: translateY(2px);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-close {
+  margin-right: 16px;
+}
+
+.medium-editor-toolbar-anchor-preview {
+  background: rgba(59, 130, 246, var(--tw-bg-opacity));
+  border-radius: 50px;
+  padding: 5px 12px;
+}
+
+.medium-editor-anchor-preview a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.medium-editor-toolbar-actions li, .medium-editor-toolbar-actions button {
+  border-radius: 50px;
+}
+
+.medium-editor-element,
+.descripcion {
+  min-height: 300px;
+}
+
+.medium-editor-element ol, .medium-editor-element ul, .medium-editor-element h1, .medium-editor-element h2, .medium-editor-element h3, .medium-editor-element p, .medium-editor-element a,
+.descripcion ol,
+.descripcion ul,
+.descripcion h1,
+.descripcion h2,
+.descripcion h3,
+.descripcion p,
+.descripcion a {
+  color: #4a5568;
+}
+
+.medium-editor-element ol, .medium-editor-element ul,
+.descripcion ol,
+.descripcion ul {
+  padding-left: 50px;
+}
+
+.medium-editor-element ol,
+.descripcion ol {
+  list-style: decimal;
+}
+
+.medium-editor-element ul,
+.descripcion ul {
+  list-style: disc;
+}
+
+.medium-editor-element h2, .medium-editor-element h3,
+.descripcion h2,
+.descripcion h3 {
+  margin: 1rem 0;
+}
+
+.medium-editor-element h2,
+.descripcion h2 {
+  font-size: 1.8rem;
+}
+
+.medium-editor-element h3,
+.descripcion h3 {
+  font-size: 2.2rem;
+}
+
+.medium-editor-element p,
+.descripcion p {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.dropzone {
+  border: 2px dashed #C1C1C1;
+}
+
+.dropzone .dz-error {
+  display: none;
+}
+
+.dropzone .dz-message .dz-button {
+  color: #666;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
