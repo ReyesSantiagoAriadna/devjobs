@@ -30,3 +30,4 @@ Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vaca
 
 //subir imagenes
 Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
+Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');

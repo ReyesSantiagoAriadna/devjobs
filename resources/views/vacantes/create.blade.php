@@ -89,6 +89,10 @@
             <label for="descripcion" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
              
             <div id="dropzoneDevjob" class="dropzone bg-gray-100"></div>
+
+            <input type="hidden" name="imagen" id="imagen">
+
+            <p id="error"> </p>
  
         </div>
 
@@ -130,11 +134,39 @@
              //dropzone
              const dropzoneDevjob= new Dropzone('#dropzoneDevjob', {
                  url: "/vacantes/imagen",
+                 dictDefaultMessage: 'Sube aqui tu archivo',
+                 acceptedFiles: ".png, .jpg, .jpeg, .gif, .bmp",
+                 addRemoveLinks: true,
+                 dictRemoveFile: 'Borrar archivo',
+                 maxFiles: 1,
                  headers: { 
                      'X-CSRF-TOKEN' : document.querySelector('meta[name=csrf-token]').content
                  }, 
                  success: function(file, response){
-                     console.log(response);
+                     //console.log(response);
+                     document.querySelector('#error').textContent = '';
+
+                     //coloca la respuesta del servidor en el input hiiden
+                     document.querySelector('#imagen').value = response.correcto;
+
+                     //añadir al objeto de archivo el nombre del servidor
+                     file.nombreServidor = response.correcto;
+                 }, 
+                 maxfilesexceeded: function(file){
+                     if (this.files[1] != null) {
+                         this.removeFile(this.files[0]); //eliminar el archivo anterior
+                         this.addFile(file); //agregar el nuevo archivo
+                     }
+                 }, 
+                 removedfile: function(file, response){
+                    file.previewElement.parentNode.removeChild(file.previewElement);
+
+                     params = {
+                         imagen: file.nombreServidor
+                     }
+
+                     axios.post('/vacantes/borrarimagen', params)
+                                .then(respuesta => console.log(respuesta));
                  }
              });
              

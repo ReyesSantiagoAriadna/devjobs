@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Salario;
 use App\Models\Vacante;
 use App\Models\Categoria;
-use App\Models\Experiencia;
-use App\Models\Salario;
 use App\Models\Ubicacion;
-use Illuminate\Http\Request;
-use Database\Seeders\CategoriaSeed;
-use Database\Seeders\UbicacionSeeder;
+use App\Models\Experiencia;
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\File; 
 
 class VacanteController extends Controller
 {
@@ -102,6 +101,22 @@ class VacanteController extends Controller
 
 
     public function imagen(Request $request){
-        return "subiendo.......";
+        $imagen = $request->file('file');
+        $nombreImagen = time() . '.' . $imagen->extension();
+        $imagen->move(public_path('storage/vacantes'), $nombreImagen);
+        return response()->json(['correcto' => $nombreImagen]);
+    }
+
+    //borrar imaqen via ajx
+    public function dropImage(Request $request){
+        if ($request->ajax()) {
+            $imagen = $request->get('imagen');
+
+            if (File::exists('storage/vacantes/' . $imagen)) {
+                 File::delete('storage/vacantes/' . $imagen);  
+            }
+
+            return response('Imagen eliminada', 200);
+        }
     }
 }
