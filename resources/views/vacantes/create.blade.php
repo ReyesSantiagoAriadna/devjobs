@@ -12,11 +12,26 @@
 @section('content')
     <h1 class="text-2xl text-center mt-10">Nueva vacante</h1>
 
-    <form class="max-w-lg mx-auto my-10">
+    <form action="{{route('vacantes.store')}}" method="POST" class="max-w-lg mx-auto my-10">
+        @csrf
+        
         <div class="mb-5">
             <label for="titulo" class="block text-gray-700 text-sm mb-2">Titulo vacante:</label>
-            <input id="titulo" type="titulo" class="p-3 bg-gray-100 rounded form-input w-full @error('titulo') is-invalid @enderror" name="email" value="{{ old('titulo') }}" autocomplete="titulo" autofocus>
+            <input 
+                placeholder="Titulo de la vacante" 
+                id="titulo" type="titulo" 
+                class="p-3 bg-gray-100 rounded form-input w-full @error('titulo') is-invalid @enderror" 
+                name="titulo" 
+                value="{{ old('titulo') }}" 
+                autocomplete="titulo" 
+                autofocus>
 
+            @error('titulo')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
         <div class="mb-5">
@@ -28,9 +43,16 @@
               >
              <option disabled selected>-- Seleciona --</option>
              @foreach ($categorias as $categoria)
-                <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                <option value="{{$categoria->id}}" {{old('categoria') == $categoria->id ? 'selected' : ''}}>{{$categoria->nombre}}</option>
              @endforeach
              </select>
+
+             @error('categoria')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
         <div class="mb-5">
@@ -42,9 +64,16 @@
               >
              <option disabled selected>-- Seleciona --</option>
              @foreach ($experiencias as $experiencia)
-                <option value="{{$experiencia->id}}">{{$experiencia->nombre}}</option>
+                <option value="{{$experiencia->id}}" {{old('experiencia') == $experiencia->id ? 'selected' : ''}}>{{$experiencia->nombre}}</option>
              @endforeach
              </select>
+
+             @error('experiencia')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
         <div class="mb-5">
@@ -56,9 +85,16 @@
               >
              <option disabled selected>-- Seleciona --</option>
              @foreach ($ubicaciones as $ubicacion)
-                <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+                <option value="{{$ubicacion->id}}" {{old('ubicacion') == $ubicacion->id ? 'selected' : ''}}>{{$ubicacion->nombre}}</option>
              @endforeach
              </select>
+
+             @error('ubicacion')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
         <div class="mb-5">
@@ -70,9 +106,16 @@
               >
              <option disabled selected>-- Seleciona --</option>
              @foreach ($salarios as $salario)
-                <option value="{{$salario->id}}">{{$salario->nombre}}</option>
+                <option value="{{$salario->id}}" {{old('salario') == $salario->id ? 'selected' : ''}}>{{$salario->nombre}}</option>
              @endforeach
              </select>
+
+             @error('salario')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
 
@@ -81,19 +124,49 @@
              
             <div class="editable p-3 bg-gray-100 rounded form-input w-full text-gray-700"></div>
 
+            <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }}" >
 
-            <input type="hidden" name="descripcion" id="descripcion">
+            @error('descripcion')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
         <div class="mb-5">
-            <label for="descripcion" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
+            <label for="imagen" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
              
             <div id="dropzoneDevjob" class="dropzone bg-gray-100"></div>
 
-            <input type="hidden" name="imagen" id="imagen">
+            <input type="hidden" name="imagen" id="imagen"  value="{{ old('imagen') }}">
 
             <p id="error"> </p>
+
+            @error('imagen')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
  
+        </div>
+
+        <div class="mb-5">
+            <label for="skills" class="block text-gray-700 text-sm mb-5">Habilidades y conocimientos: <span class="xs">(Elige al menos 3)</span></label>
+            
+            @php
+                $skills = ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'Express', 'Deno', 'React Native', 'Flutter', 'MobX', 'C#', 'Ruby on Rails']
+            @endphp
+            
+            <lista-skills :skills="{{ json_encode($skills) }}" :oldskills="{{json_encode(old('skills'))}}"></lista-skills>
+
+            @error('skills')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+                    <strong class="font-bold">Error!</strong> 
+                    <span class="block">{{$message}}</span>
+                </div>
+            @enderror
         </div>
 
          
@@ -126,10 +199,14 @@
                 }
              });
 
+             //agregar al input hidden lo que el usuario escribe en medium ditor
              editor.subscribe('editableInput', function(eventObj, editable){
                  const contenido = editor.getContent();
                  document.querySelector('#descripcion').value = contenido;
              })
+
+             //llena el editor  con el contenido del input hidden
+             editor.setContent(document.querySelector('#descripcion').value);
 
              //dropzone
              const dropzoneDevjob= new Dropzone('#dropzoneDevjob', {
@@ -142,6 +219,19 @@
                  headers: { 
                      'X-CSRF-TOKEN' : document.querySelector('meta[name=csrf-token]').content
                  }, 
+                 init: function(){
+                    if (document.querySelector('#imagen').value.trim()) {
+                        let imagenPublicada = {};
+                        imagenPublicada.size = 1234;
+                        imagenPublicada.name = document.querySelector('#imagen').value;
+
+                        this.options.addedfile.call(this, imagenPublicada);
+                        this.options.thumbnail.call(this, imagenPublicada, `/storage/vacantes/${imagenPublicada.name}`);
+
+                        imagenPublicada.previewElement.classList.add('dz-sucess');
+                        imagenPublicada.previewElement.classList.add('dz-complete');
+                    } 
+                 },
                  success: function(file, response){
                      //console.log(response);
                      document.querySelector('#error').textContent = '';
@@ -162,7 +252,7 @@
                     file.previewElement.parentNode.removeChild(file.previewElement);
 
                      params = {
-                         imagen: file.nombreServidor
+                         imagen: file.nombreServidor ?? document.querySelector('#imagen').value
                      }
 
                      axios.post('/vacantes/borrarimagen', params)
