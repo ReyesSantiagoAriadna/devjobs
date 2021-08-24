@@ -164,3 +164,20 @@ $medium-editor-placeholder-color: #f8f5f3;
         color: #666;       
     }
 }
+
+//paginacion
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    gap: 1rem;
+    .page-link{
+        font-size: .8rem;
+    }
+    a{
+        color: #38b2ac
+    }
+    span.page-link{
+        color: #718096;
+    }
+}

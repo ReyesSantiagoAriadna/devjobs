@@ -3,7 +3,7 @@
         <ul class="flex flex-wrap justify-center">
             <li 
                 class="border border-gray-500 px-10 py-3 mb-3 rounded mr-4"
-                :class="verificarClaseActive(skill)"
+                :class="verificarActive(skill) "
                 v-for="( skill, i) in this.skills"
                 v-bind:key="i"
                 @click="activar($event)"
@@ -50,8 +50,8 @@
                 const stringHabilidades = [...this.habilidades];
                 document.querySelector('#skills').value = stringHabilidades;
             },
-            verificarClaseActive(skill){
-                return this.habilidades.has(skill) ? console.log('entro') : console.log('no entro');
+            verificarActive (skill){ 
+                return this.habilidades.has(skill) ? 'bg-blue-500' : '';
             }
         }
     }
