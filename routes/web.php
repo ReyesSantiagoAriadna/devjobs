@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,8 @@ Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vac
 Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');
 });
 
+//Enviar satos para la vacante
+Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //Muestra las vacantes sin autentificacion
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');

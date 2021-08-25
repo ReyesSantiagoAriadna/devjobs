@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\FuncCall;
 
 class Vacante extends Model
 {
@@ -29,6 +30,16 @@ class Vacante extends Model
     //relacion 1:1 experiencia y vacante
     public function experiencia(){
         return $this->belongsTo(Experiencia::class);
+    }
+
+    //relacion 1:1 reclutador y vacante
+    public function reclutador(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    //relacion 1:n vacante y candidatos
+    public function candidatos(){
+        return $this->hasMany(Candidato::class);
     }
 
 }
