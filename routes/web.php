@@ -36,11 +36,12 @@ Route::group(['middleeare' => ['auth','verified']], function(){
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
     Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');
 
-    //notificaciones 
+    //notificaciones
     Route::get('/notificaciones', NotificationsController::class)->name('notificaciones');
 });
 
 //Enviar satos para la vacante
+Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('candidatos.index');
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //Muestra las vacantes sin autentificacion

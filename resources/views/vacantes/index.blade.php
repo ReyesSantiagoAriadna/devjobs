@@ -48,7 +48,7 @@
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                   <a
-                      href=""
+                      href="{{route('candidatos.index', ['id' => $vacante->id])}}"
                       class="text-gray-500 hover:text-gray-600"
                   >{{$vacante->candidatos->count()}}   Candidatos</a>
               </td>

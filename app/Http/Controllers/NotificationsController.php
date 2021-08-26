@@ -14,7 +14,7 @@ class NotificationsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $notificaciones = auth()->user()->unreadNotifications;
+         $notificaciones = auth()->user()->unreadNotifications;
 
         auth()->user()->unreadNotifications->markAsRead();
 

@@ -7,11 +7,11 @@ use App\Models\Vacante;
 use App\Models\Categoria;
 use App\Models\Ubicacion;
 use App\Models\Experiencia;
-use Illuminate\Http\Request; 
-use Illuminate\Support\Facades\File; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class VacanteController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +48,7 @@ class VacanteController extends Controller
      */
     public function store(Request $request)
     {
-        //validacion 
+        //validacion
         $data = $request->validate([
             'titulo' => 'required|min:6',
             'categoria' => 'required',
@@ -134,7 +134,7 @@ class VacanteController extends Controller
             $imagen = $request->get('imagen');
 
             if (File::exists('storage/vacantes/' . $imagen)) {
-                 File::delete('storage/vacantes/' . $imagen);  
+                 File::delete('storage/vacantes/' . $imagen);
             }
 
             return response('Imagen eliminada', 200);
