@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\VacanteController;
+use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,8 +33,11 @@ Route::group(['middleeare' => ['auth','verified']], function(){
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
 
     //subir imagenes
-Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
-Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');
+    Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
+    Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');
+
+    //notificaciones 
+    Route::get('/notificaciones', NotificationsController::class)->name('notificaciones');
 });
 
 //Enviar satos para la vacante
