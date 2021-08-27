@@ -20,7 +20,7 @@ class VacanteController extends Controller
     public function index()
     {
         //$vacantes = auth()->user()->vacantes;
-        $vacantes = Vacante::where('user_id', auth()->user()->id)->simplePaginate(2);
+        $vacantes = Vacante::where('user_id', auth()->user()->id)->simplePaginate(5);
         return view('vacantes.index', compact('vacantes'));
     }
 
@@ -117,7 +117,9 @@ class VacanteController extends Controller
      */
     public function destroy(Vacante $vacante)
     {
-        //
+        $vacante->delete();
+
+        return response()->json(['mensaje' => 'Se eliminó la vacante' . $vacante->titulo]);
     }
 
 
@@ -139,5 +141,16 @@ class VacanteController extends Controller
 
             return response('Imagen eliminada', 200);
         }
+    }
+
+    //cambia el estado de una vacante
+    public function estado(Request $request, Vacante $vacante){
+        //leer el nuevo estado y actualizarlo
+        $vacante->activa = $request->estado;
+
+        //guardar en la BD
+        $vacante->save();
+
+        return response()->json(['respuesta' => 'Correscto']);
     }
 }

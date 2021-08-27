@@ -31,10 +31,14 @@ Route::group(['middleeare' => ['auth','verified']], function(){
     Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');
     Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
+    Route::delete('/vacantes/{vacante}', [VacanteController::class, 'destroy'])->name('vacantes.destroy');
 
     //subir imagenes
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
     Route::post('/vacantes/borrarimagen', [VacanteController::class, 'dropImage'])->name('vacantes.borrar');
+
+    //cambiar estado de la vacante
+    Route::post('/vacantes/{vacante}', [VacanteController::class, 'estado'])->name('vacante.estado');
 
     //notificaciones
     Route::get('/notificaciones', NotificationsController::class)->name('notificaciones');
