@@ -31868,6 +31868,10 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
 .medium-toolbar-arrow-under:after {
   border-color: rgba(59, 130, 246, var(--tw-bg-opacity)) transparent transparent transparent;
   top: 40px;

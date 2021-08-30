@@ -1877,7 +1877,7 @@ __webpack_require__.r(__webpack_exports__);
           };
           axios.post("/vacantes/".concat(_this.vacanteId), params).then(function (respuesta) {
             //console.log(respuesta)
-            _this.$swal.fire('Vacante eliminada', respuesta.data.mensaje, 'success'); //ekiminar del DOM
+            _this.$swal.fire('Vacante eliminada', respuesta.data.mensaje, 'success'); //eliminar del DOM
 
 
             _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode);

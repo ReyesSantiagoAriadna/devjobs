@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes(['verify' => true]);
 
@@ -46,6 +43,9 @@ Route::group(['middleeare' => ['auth','verified']], function(){
     //notificaciones
     Route::get('/notificaciones', NotificationsController::class)->name('notificaciones');
 });
+
+//PAgina de inicio
+Route::get('/', InicioController::class)->name('inicio');
 
 //Enviar satos para la vacante
 Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('candidatos.index');

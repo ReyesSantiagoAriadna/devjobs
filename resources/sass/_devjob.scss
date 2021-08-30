@@ -7,6 +7,10 @@ $medium-editor-link-color: #ccc;
 $medium-editor-border-radius: 50px;
 $medium-editor-placeholder-color: #f8f5f3;
 
+body{
+    font-family: 'Noto Sans', sans-serif;
+}
+
 // theme rules
 .medium-toolbar-arrow-under:after {
     border-color: $medium-editor-bgcolor transparent transparent transparent;
@@ -123,7 +127,7 @@ $medium-editor-placeholder-color: #f8f5f3;
 .medium-editor-element,
 .descripcion {
     min-height: 300px;
-   
+
     ol, ul, h1, h2, h3, p, a {
         color: #4a5568;
     }
@@ -161,7 +165,7 @@ $medium-editor-placeholder-color: #f8f5f3;
     }
 
     .dz-message .dz-button{
-        color: #666;       
+        color: #666;
     }
 }
 
