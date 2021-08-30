@@ -32,6 +32,9 @@ Route::group(['middleeare' => ['auth','verified']], function(){
     Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
     Route::delete('/vacantes/{vacante}', [VacanteController::class, 'destroy'])->name('vacantes.destroy');
+    Route::get('/vacantes/{vacante}/edit', [VacanteController::class, 'edit'])->name('vacantes.edit');
+    Route::put('/vacantes/{vacante}', [VacanteController::class, 'update'])->name('vacantes.update');
+
 
     //subir imagenes
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');

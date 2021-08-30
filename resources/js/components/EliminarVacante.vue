@@ -39,7 +39,7 @@ export default {
                                 'success'
                             );
 
-                            //ekiminar del DOM
+                            //eliminar del DOM
                             this.$el.parentNode.parentNode.parentNode.removeChild(this.$el.parentNode.parentNode);
 
                         })
