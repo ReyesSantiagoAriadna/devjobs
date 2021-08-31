@@ -2032,8 +2032,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       document.querySelector('#skills').value = stringHabilidades;
     },
-    verificarActive: function verificarActive(skill) {
-      return this.habilidades.has(skill) ? 'bg-blue-500' : '';
+    seleccionarClaseActiva: function seleccionarClaseActiva(skill) {
+      return this.habilidades.has(skill) ? 'bg-blue-500' : ''; // console.log(skill)
     }
   }
 });
@@ -38796,7 +38796,7 @@ var render = function() {
           {
             key: i,
             staticClass: "border border-gray-500 px-10 py-3 mb-3 rounded mr-4",
-            class: _vm.verificarActive(skill),
+            class: _vm.seleccionarClaseActiva(skill),
             on: {
               click: function($event) {
                 return _vm.activar($event)

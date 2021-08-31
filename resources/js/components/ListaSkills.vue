@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul class="flex flex-wrap justify-center">
-            <li 
+            <li
                 class="border border-gray-500 px-10 py-3 mb-3 rounded mr-4"
-                :class="verificarActive(skill) "
+                :class="seleccionarClaseActiva(skill)"
                 v-for="( skill, i) in this.skills"
                 v-bind:key="i"
                 @click="activar($event)"
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-    export default { 
-        props: ['skills','oldskills'],        
+    export default {
+        props: ['skills','oldskills'],
         data: function(){
             return {
                 habilidades: new Set()
@@ -50,8 +50,9 @@
                 const stringHabilidades = [...this.habilidades];
                 document.querySelector('#skills').value = stringHabilidades;
             },
-            verificarActive (skill){ 
-                return this.habilidades.has(skill) ? 'bg-blue-500' : '';
+            seleccionarClaseActiva (skill){
+                return this.habilidades.has(skill) ?  'bg-blue-500' : '';
+               // console.log(skill)
             }
         }
     }
