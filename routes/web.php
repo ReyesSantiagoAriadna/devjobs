@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\NotificationsController;
@@ -47,12 +48,19 @@ Route::group(['middleeare' => ['auth','verified']], function(){
 //PAgina de inicio
 Route::get('/', InicioController::class)->name('inicio');
 
+//categorias
+Route::get('/categorias/{categoria}', [CategoriaController::class, 'show'])->name('categoria.show');
+
 //Enviar satos para la vacante
 Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('candidatos.index');
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //Muestra las vacantes sin autentificacion
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
+
+//
+Route::get('/vacantes/buscar', [VacanteController::class, 'buscar'])->name('vacantes.buscar');
+Route::get('/vacantes/buscar', [VacanteController::class, 'resultados'])->name('vacantes.resultados');
 
 
 
