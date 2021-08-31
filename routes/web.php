@@ -56,11 +56,6 @@ Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('can
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //Muestra las vacantes sin autentificacion
+Route::get('/busqueda/buscar', [VacanteController::class, 'resultados'])->name('vacantes.resultados');
+Route::post('/busqueda/buscar', [VacanteController::class, 'buscar'])->name('vacantes.buscar');
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
-
-//
-Route::get('/vacantes/buscar', [VacanteController::class, 'buscar'])->name('vacantes.buscar');
-Route::get('/vacantes/buscar', [VacanteController::class, 'resultados'])->name('vacantes.resultados');
-
-
-
